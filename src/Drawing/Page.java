@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package new_toolbar;
+package Drawing;
 
 import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
-
+import java.util.Vector;
 /**
  *
  * @author angus
@@ -19,7 +19,7 @@ public class Page extends Panel{
     // 建立一個顏色的陣列
     public Color pageColors[] = {Color.BLACK, Color.white, Color.CYAN, Color.darkGray, Color.BLUE, Color.pink, Color.GRAY, Color.ORANGE};
    
-    public static int id = 1; //定義一個 常數 id
+    public static int id = 0; //定義一個 常數 id
     
     
     Page(){
@@ -28,12 +28,4 @@ public class Page extends Panel{
         
     }
 
-    Page elementAt(int i) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
-
-    int indexOf(Page activatePage) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }
