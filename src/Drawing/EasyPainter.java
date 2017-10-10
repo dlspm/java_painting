@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package new_toolbar;
+package Drawing;
 
 import java.awt.*;
 import java.util.*;
@@ -20,16 +20,16 @@ public class EasyPainter {
     public ToolBar toolBar;
     public MessageBar megBar;
     
-    public int numPages = 1; // 存放總 Page 頁
-    public int curPage = 1;  // 當前 Page 頁
+    public int numPages = 0; // 存放總 Page 頁
+    public int curPage = 0;  // 當前 Page 頁
     
     public Page activatePage = null ; //判斷是否有新增 Page
-//    public Page pages = null; //不知道要幹麻
-    
+
+    public Vector<Page> pages = null;
     public ArrayList colorpage = new ArrayList();
     
     EasyPainter(){
-        
+        pages = new Vector<Page>();
         mainWin = new MainWindow(this);
         
         toolBar = new ToolBar(this);
@@ -43,7 +43,4 @@ public class EasyPainter {
         
     }
 
-    Object activatePage(int i) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }
