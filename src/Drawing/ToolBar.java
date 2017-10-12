@@ -21,7 +21,9 @@ public class ToolBar extends Panel{
     Button newPageBtn = new Button("new Page");
     
         
-    JButton penBtn = new JButton("Pen");
+    Button penBtn = new Button("Pen");
+    Button rectBtn = new Button("React");
+    Button cleanBtn = new Button("Clean");
     
     
     
@@ -30,13 +32,15 @@ public class ToolBar extends Panel{
         this.setBackground(Color.lightGray);
         this.setLayout(new FlowLayout());
         
+        //先把 Button 隱藏是為了在有 newPage 之後在出現
         previousPageBtn.setVisible(false);
         nextPageBtn.setVisible(false);
         newPageBtn.setVisible(false);
         penBtn.setVisible(false);
+        cleanBtn.setVisible(false);
         
         
-        
+     
         Button startBtn = new Button("Start");
         this.add(startBtn);
         startBtn.addMouseListener(new MouseAdapter(){
@@ -53,6 +57,7 @@ public class ToolBar extends Panel{
                 startBtn.setVisible(false);
                 newPageBtn.setVisible(true);
                 penBtn.setVisible(true);
+                cleanBtn.setVisible(true);
                 ep.mainWin.setVisible(true);
             }
         });
@@ -140,16 +145,8 @@ public class ToolBar extends Panel{
         penBtn.addMouseListener(new MouseAdapter(){
            public void mouseClicked(MouseEvent e){
                System.out.println("pen_start");
-//               ep.pen = new Pen();
-               ep.activatePage.Drawline();
-               
-               
-               
-//               ep.activatePage.add(ep.pen);
-//               ep.mainWin.add(ep.pen);
-//               ep.mainWin.add(ep.activatePage, BorderLayout.CENTER);
-//               ep.megBar.updateInfo(--ep.curPage, ep.numPages);
-               
+        //               ep.pen = new Pen();
+               ep.activatePage.DrawLine();
            }
         });
         //建立penBtn的ActionListener，用來監聽按下按鈕後。
@@ -158,13 +155,34 @@ public class ToolBar extends Panel{
                 // 按下按鈕之後執行的動作
                 System.out.println("click Pen");
                 
-                
-                
+            }
+        });
+        
+        this.add(rectBtn);
+        rectBtn.addMouseListener(new MouseAdapter(){
+           public void mouseClicked(MouseEvent e){
+               System.out.println("pen_start");
+        //               ep.pen = new Pen();
+               ep.activatePage.DrawRect();
+
+           }
+        });
+        
+    
+        this.add(cleanBtn);
+        cleanBtn.addMouseListener(new MouseAdapter(){
+           public void mouseClicked(MouseEvent e){
+               System.out.println("Clean");
+               ep.activatePage.Clean();
+           }
+        });
+        cleanBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
                 
             }
         });
         
-    
+        
     }
     
     

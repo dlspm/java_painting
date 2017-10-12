@@ -28,13 +28,11 @@ public class EasyPainter {
     public Page activatePage = null ; //判斷是否有新增 Page
     public Pen pen = null;
     public Vector<Page> pages = null; 
-//    public Vector<Pen> pens = null;
     
 //    public ArrayList colorpage = new ArrayList();
 
     EasyPainter(){
         pages = new Vector<Page>();
-//        pens = new Vector<Pen>();
         
         mainWin = new MainWindow(this);
         

@@ -30,7 +30,7 @@ public class Page extends Panel{
 //         addMouseMotionListener 專門是滑鼠移動的，回去要看文獻去看監聽什麼事件（mouseDragged）
     }
     
-    public void Drawline(){
+    public void DrawLine(){
             
         this.addMouseMotionListener(new MouseAdapter(){ //針對滑鼠移動軌跡監聽
             public void mouseDragged(MouseEvent e){ //移動軌跡
@@ -44,7 +44,7 @@ public class Page extends Panel{
                 Page.this.lines.add( new Line(lp, cp)); 
                 //把 g.drawLine(lp.x, lp.y, cp.x, cp.y); 的線畫到 lines 已便記錄到 Vector
                 
-                lp = cp;
+                lp = cp; //每一次都有上一次（除了第一次外）
             }
         }); 
         
@@ -64,6 +64,38 @@ public class Page extends Panel{
 
     }
     
+    public void DrawRect(){
+        this.addMouseMotionListener(new MouseAdapter(){ //針對滑鼠移動軌跡監聽
+            public void mouseDragged(MouseEvent e){ //移動軌跡
+                System.out.println("mouse");
+                cp = e.getPoint() ; //當下位置
+                
+                //先取得一個繪圖的裝置
+                Graphics g = Page.this.getGraphics(); 
+                
+                g.drawLine(lp.x, lp.y, cp.x, cp.y); //畫線
+                Page.this.lines.add( new Line(lp, cp)); 
+                //把 g.drawLine(lp.x, lp.y, cp.x, cp.y); 的線畫到 lines 已便記錄到 Vector
+                
+                lp = cp; //每一次都有上一次（除了第一次外）
+            }
+        }); 
+        
+        this.addMouseListener(new MouseAdapter(){ //針對各式各樣的滑鼠動作
+            public void mousePressed(MouseEvent e){ //按下
+                System.out.println("mousePressed");
+                lp = e.getPoint() ; //第一次
+            }
+            public void mouseReleased(MouseEvent e){ //放開
+                System.out.println("mouseReleased");
+                
+            }
+            public void mouseClick(MouseEvent e){
+                System.out.println("mouseClick");
+            }
+        }); 
+    }
+    
     public void paint(Graphics g){  //記錄Line
 
         for(int i=0;i<Page.this.lines.size();i++){
@@ -72,5 +104,10 @@ public class Page extends Panel{
         }
         
     }
-  
+
+    public void Clean(){
+        System.out.println("Page_Clean");
+        lines.clear();
+        repaint();
+    }
 }
