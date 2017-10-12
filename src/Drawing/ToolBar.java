@@ -7,25 +7,34 @@ package Drawing;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
+import javax.swing.JButton;
 /**
  *
  * @author angus
  */
 public class ToolBar extends Panel{
+    
+    Button previousPageBtn = new Button("上一頁");
+    
+    Button nextPageBtn = new Button("下一頁");
+    
+    Button newPageBtn = new Button("new Page");
+    
+        
+    JButton penBtn = new JButton("Pen");
+    
+    
+    
     ToolBar(EasyPainter ep){ //工具列
         
         this.setBackground(Color.lightGray);
         this.setLayout(new FlowLayout());
         
-        Button previousPageBtn = new Button("上一頁");
         previousPageBtn.setVisible(false);
-        Button nextPageBtn = new Button("下一頁");
         nextPageBtn.setVisible(false);
-        Button newPageBtn = new Button("new Page");
         newPageBtn.setVisible(false);
-        
-        Button penBtn = new Button("Pen");
         penBtn.setVisible(false);
+        
         
         
         Button startBtn = new Button("Start");
@@ -131,11 +140,32 @@ public class ToolBar extends Panel{
         penBtn.addMouseListener(new MouseAdapter(){
            public void mouseClicked(MouseEvent e){
                System.out.println("pen_start");
-                          
+//               ep.pen = new Pen();
+               ep.activatePage.Drawline();
+               
+               
+               
+//               ep.activatePage.add(ep.pen);
+//               ep.mainWin.add(ep.pen);
+//               ep.mainWin.add(ep.activatePage, BorderLayout.CENTER);
+//               ep.megBar.updateInfo(--ep.curPage, ep.numPages);
                
            }
+        });
+        //建立penBtn的ActionListener，用來監聽按下按鈕後。
+        penBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // 按下按鈕之後執行的動作
+                System.out.println("click Pen");
+                
+                
+                
+                
+            }
         });
         
     
     }
+    
+    
 }
