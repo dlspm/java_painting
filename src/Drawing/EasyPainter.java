@@ -20,15 +20,20 @@ public class EasyPainter {
     public ToolBar toolBar;
     public MessageBar megBar;
     
+    
+    
     public int numPages = 0; // 存放總 Page 頁
     public int curPage = 0;  // 當前 Page 頁
     
     public Page activatePage = null ; //判斷是否有新增 Page
+    public Pen pen = null;
     public Vector<Page> pages = null; 
+    
 //    public ArrayList colorpage = new ArrayList();
 
     EasyPainter(){
         pages = new Vector<Page>();
+        
         mainWin = new MainWindow(this);
         
         toolBar = new ToolBar(this);
