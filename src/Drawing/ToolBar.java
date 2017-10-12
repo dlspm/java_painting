@@ -17,13 +17,38 @@ public class ToolBar extends Panel{
         this.setBackground(Color.lightGray);
         this.setLayout(new FlowLayout());
         
-        
         Button previousPageBtn = new Button("上一頁");
         previousPageBtn.setVisible(false);
         Button nextPageBtn = new Button("下一頁");
         nextPageBtn.setVisible(false);
-        
         Button newPageBtn = new Button("new Page");
+        newPageBtn.setVisible(false);
+        
+        Button penBtn = new Button("Pen");
+        penBtn.setVisible(false);
+        
+        
+        Button startBtn = new Button("Start");
+        this.add(startBtn);
+        startBtn.addMouseListener(new MouseAdapter(){
+            public void mouseClicked(MouseEvent e){
+//                previousPageBtn.setVisible(false);
+//                nextPageBtn.setVisible(false);
+                ep.activatePage = new Page();
+                ep.pages.add(ep.activatePage);
+                ep.mainWin.add(ep.activatePage, BorderLayout.CENTER);  //在中間
+                
+                ep.numPages++ ;
+                ep.curPage++ ;
+                ep.megBar.updateInfo(ep.curPage, ep.numPages);
+                startBtn.setVisible(false);
+                newPageBtn.setVisible(true);
+                penBtn.setVisible(true);
+                ep.mainWin.setVisible(true);
+            }
+        });
+        
+//        Button newPageBtn = new Button("new Page");
         this.add(newPageBtn);
         newPageBtn.addMouseListener(new MouseAdapter(){
             public void mouseClicked(MouseEvent e){
@@ -100,6 +125,15 @@ public class ToolBar extends Panel{
                 
                 ep.mainWin.setVisible(true);
             }
+        });
+        
+        this.add(penBtn);
+        penBtn.addMouseListener(new MouseAdapter(){
+           public void mouseClicked(MouseEvent e){
+               System.out.println("pen_start");
+                          
+               
+           }
         });
         
     

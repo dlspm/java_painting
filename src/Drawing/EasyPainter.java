@@ -24,10 +24,9 @@ public class EasyPainter {
     public int curPage = 0;  // 當前 Page 頁
     
     public Page activatePage = null ; //判斷是否有新增 Page
+    public Vector<Page> pages = null; 
+//    public ArrayList colorpage = new ArrayList();
 
-    public Vector<Page> pages = null;
-    public ArrayList colorpage = new ArrayList();
-    
     EasyPainter(){
         pages = new Vector<Page>();
         mainWin = new MainWindow(this);
