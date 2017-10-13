@@ -23,7 +23,7 @@ public class Page extends Panel{
 //    Point x, y;
     public int width, height;
     
-    
+   
     public Vector<Line> lines = null;
     public Vector<Rect> rects = null;
     
@@ -96,31 +96,27 @@ public class Page extends Panel{
 //                g.drawRect(lp.x-width, lp.y-height , width, height); //左上
                 System.out.println("draw" + lp.x + "+" + lp.y + "+" + width + "+" + height);  
 
-//                Page.this.lines.add( new Line(lp, cp));                 
                 repaint(); //沒有repaint() 會重疊
-                
             }
         }); 
         
         this.addMouseListener(new MouseAdapter(){ //針對各式各樣的滑鼠動作
             public void mousePressed(MouseEvent e){ //按下
                 // 要先記錄第一點的座標，之後再透過 mouseDragged 繪畫出與拖曳過每一點來畫出 drawRect
-                
                 System.out.println("mousePressed");
                 lp = e.getPoint() ; //第一次
-//                Page.this.rects.add( new Line(lp, width, height));
-                Page.this.rects.add( new Rect(lp));
-                
+                //1.
+//                Page.this.rects.add( new Rect(lp,lp)); //要 add 不然拖曳的時候不會有軌跡
+                //2.
+                Page.this.rects.add( new Rect(lp)); 
             }
             public void mouseReleased(MouseEvent e){ //放開
                 System.out.println("mouseReleased");
                 Graphics g = Page.this.getGraphics(); 
-                
                 cp = e.getPoint();
-//                width = Math.abs(lp.x - cp.x);
-//                height = Math.abs(lp.y - cp.y);
-
-//                Page.this.rects.add( new Rect(lp, width, height)); 
+                //1.
+//                Page.this.rects.add( new Rect(lp,cp)); 
+                //2.
                 Page.this.rects.add( new Rect(cp)); 
                 repaint();
             }
@@ -131,20 +127,25 @@ public class Page extends Panel{
     }
     
     public void paint(Graphics g){  //記錄Line
-        super.paint(g);
+//        super.paint(g);
         
 //        for(int i=0;i<Page.this.lines.size();i++){
 //            Line l = this.lines.elementAt(i);
 //            g.drawLine(l.sp.x, l.sp.y, l.ep.x, l.ep.y);
 //        }
+
+        //1.
+//        for(int i=0;i<Page.this.rects.size();i++){
+//            width = Math.abs(rects.get(i).xy.x - rects.get(i).y.x);
+//            height = Math.abs(rects.get(i).xy.y - rects.get(i).y.y);
+//            g.drawRect(rects.get(i).xy.x, rects.get(i).xy.y, width, height);
+//        }
         
+        //2.
         for(int i=0;i<Page.this.rects.size()-1;i+=2){
-            
-//            g.drawRect(l.xy.x , l.xy.y, width, height);   
             width = Math.abs(rects.get(i+1).xy.x - rects.get(i).xy.x);
             height = Math.abs(rects.get(i+1).xy.y - rects.get(i).xy.y);
             g.drawRect(rects.get(i).xy.x, rects.get(i).xy.y, width, height);
-//            System.out.println("ppaint" + l.sp.x + "+" + l.sp.y + "+" + Math.abs(l.sp.x - l.ep.x) + "+" + Math.abs(l.sp.y - l.ep.y));
         }if(rects.size()>=1){
             width = Math.abs(cp.x - rects.get(rects.size()-1).xy.x);
             height = Math.abs(cp.y - rects.get(rects.size()-1).xy.y);

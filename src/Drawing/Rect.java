@@ -19,9 +19,17 @@ public class Rect {
 //        width = c;
 //        height = d;
 //    }
-    Point xy;
+    //1.
+//    Point xy;
+//    Point y;  
+//    Rect(Point a,Point b){
+//        xy = a;
+//        y = b;  
+//    }
+    
+    //2.
+    Point xy; 
     Rect(Point a){
         xy = a;
     }
-    
 }
