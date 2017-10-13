@@ -9,7 +9,6 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
 import java.util.Vector;
-import java.applet.*;
 
 /**
  *
@@ -20,12 +19,13 @@ public class Page extends Panel{
     // 建立一個顏色的陣列
     public Color pageColors[] = {Color.BLACK, Color.white, Color.CYAN, Color.darkGray, Color.BLUE, Color.pink, Color.GRAY, Color.ORANGE};
     public static int id = 0; //定義一個 常數 id
-    Point lp, cp; //記錄滑鼠位置，要小心如果沒有在 new 之後再使用，就很容易會出錯
-    Point x, y;
+    Point lp, cp, z; //記錄滑鼠位置，要小心如果沒有在 new 之後再使用，就很容易會出錯
+//    Point x, y;
     public int width, height;
     
+    
     public Vector<Line> lines = null;
-    public Vector<Line> rects = null;
+    public Vector<Rect> rects = null;
     
     
     Page(){
@@ -35,7 +35,7 @@ public class Page extends Panel{
     public void init(){
         this.setBackground(pageColors[id++]); // 讓每個 Page 新增後的 Background 都依照 pageColors[]
         lines = new Vector<Line>();
-        rects = new Vector<Line>();
+        rects = new Vector<Rect>();
         //         addMouseMotionListener 專門是滑鼠移動的，回去要看文獻去看監聽什麼事件（mouseDragged）
     }
     
@@ -97,7 +97,7 @@ public class Page extends Panel{
                 System.out.println("draw" + lp.x + "+" + lp.y + "+" + width + "+" + height);  
 
 //                Page.this.lines.add( new Line(lp, cp));                 
-                repaint();
+                repaint(); //沒有repaint() 會重疊
                 
             }
         }); 
@@ -108,7 +108,8 @@ public class Page extends Panel{
                 
                 System.out.println("mousePressed");
                 lp = e.getPoint() ; //第一次
-                
+//                Page.this.rects.add( new Line(lp, width, height));
+                Page.this.rects.add( new Rect(lp));
                 
             }
             public void mouseReleased(MouseEvent e){ //放開
@@ -116,10 +117,11 @@ public class Page extends Panel{
                 Graphics g = Page.this.getGraphics(); 
                 
                 cp = e.getPoint();
-                width = Math.abs(lp.x - cp.x);
-                height = Math.abs(lp.y - cp.y);
+//                width = Math.abs(lp.x - cp.x);
+//                height = Math.abs(lp.y - cp.y);
 
-                Page.this.rects.add( new Line(lp, cp)); 
+//                Page.this.rects.add( new Rect(lp, width, height)); 
+                Page.this.rects.add( new Rect(cp)); 
                 repaint();
             }
             public void mouseClick(MouseEvent e){
@@ -135,14 +137,19 @@ public class Page extends Panel{
 //            Line l = this.lines.elementAt(i);
 //            g.drawLine(l.sp.x, l.sp.y, l.ep.x, l.ep.y);
 //        }
-        for(int i=0;i<Page.this.rects.size();i++){
-            Line l = this.rects.elementAt(i);
-            g.drawRect(l.sp.x , l.sp.y, width, height);   
-            System.out.println("ppaint" + l.sp.x + "+" + l.sp.y + "+" + Math.abs(l.sp.x - l.ep.x) + "+" + Math.abs(l.sp.y - l.ep.y));
-            
-        }
         
-        System.out.println("pppppaint");
+        for(int i=0;i<Page.this.rects.size()-1;i+=2){
+            
+//            g.drawRect(l.xy.x , l.xy.y, width, height);   
+            width = Math.abs(rects.get(i+1).xy.x - rects.get(i).xy.x);
+            height = Math.abs(rects.get(i+1).xy.y - rects.get(i).xy.y);
+            g.drawRect(rects.get(i).xy.x, rects.get(i).xy.y, width, height);
+//            System.out.println("ppaint" + l.sp.x + "+" + l.sp.y + "+" + Math.abs(l.sp.x - l.ep.x) + "+" + Math.abs(l.sp.y - l.ep.y));
+        }if(rects.size()>=1){
+            width = Math.abs(cp.x - rects.get(rects.size()-1).xy.x);
+            height = Math.abs(cp.y - rects.get(rects.size()-1).xy.y);
+            g.drawRect(rects.get(rects.size()-1).xy.x, rects.get(rects.size()-1).xy.y, width, height);
+        }
     }
     
 
