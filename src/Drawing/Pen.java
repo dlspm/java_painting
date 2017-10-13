@@ -9,17 +9,18 @@ import java.awt.*; //包含：Panel
 import java.awt.event.*;
 import java.util.*;
 import java.util.Vector;
-
+import javax.swing.*;
 
 /**
  *
  * @author angus
  */
-public class Pen extends Panel {
+public class Pen extends JPanel {
     
     Point lp, cp; //記錄滑鼠位置，要小心如果沒有在 new 之後再使用，就很容易會出錯
     public Vector<Line> pen_lines = null; 
     
+    private boolean selected; 
     Pen(){
         init();
     
@@ -27,7 +28,10 @@ public class Pen extends Panel {
     
     public void init(){
         
-        this.setBackground(Color.red);
+//        this.setBackground(Color.red);
+//        this.setBackground(null);                      // 把背景设置为会  
+        this.setOpaque(false); //背景設為透明，因為這個功能所以使用 JPanel
+        
         this.setLayout(new BorderLayout());
         pen_lines = new Vector<Line>();
         this.setSize(300, 300);
@@ -56,8 +60,6 @@ public class Pen extends Panel {
             public void mouseReleased(MouseEvent e){ //放開
                 System.out.println("mouseReleased");
                 
-                
-                
             }
             public void mouseClick(MouseEvent e){
                 System.out.println("mouseClick");
@@ -71,5 +73,5 @@ public class Pen extends Panel {
             g.drawLine(l.sp.x, l.sp.y, l.ep.x, l.ep.y);
         }
     }
-    
+
 }

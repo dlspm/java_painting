@@ -8,6 +8,8 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
 import javax.swing.JButton;
+import javax.swing.*;
+
 /**
  *
  * @author angus
@@ -117,8 +119,6 @@ public class ToolBar extends Panel{
         });
         
         
-//      
-        
         
 //        Button nextPageBtn = new Button("下一頁");
         this.add(nextPageBtn);
@@ -147,12 +147,14 @@ public class ToolBar extends Panel{
         penBtn.addMouseListener(new MouseAdapter(){
            public void mouseClicked(MouseEvent e){
                System.out.println("pen_start");
-               ep.activatePage.DrawLine();
+//               ep.activatePage.DrawLine();
                
 
-//               ep.pen = new Pen();
-//               ep.pens.add(ep.pen);
-//               ep.activatePage.add(ep.pen);
+               ep.pen = new Pen(); //新增一個 Panel DrawLine
+               ep.pen.setOpaque(false);
+               ep.pens.add(ep.pen); //放到 point 裡
+               ep.activatePage.add(ep.pen); //再把這個 Panel add 到現在的 Page
+               ep.pages.add(ep.activatePage); //放到 Point 裡
                
 //               ep.mainWin.add(ep.pen);
 
