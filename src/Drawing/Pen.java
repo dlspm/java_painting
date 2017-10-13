@@ -7,7 +7,7 @@ package Drawing;
 
 import java.awt.*; //包含：Panel
 import java.awt.event.*;
-
+import java.util.*;
 import java.util.Vector;
 
 
@@ -15,13 +15,22 @@ import java.util.Vector;
  *
  * @author angus
  */
-public class Pen extends Panel{
+public class Pen extends Panel {
     
     Point lp, cp; //記錄滑鼠位置，要小心如果沒有在 new 之後再使用，就很容易會出錯
-    public Vector<Line> lines = null; 
+    public Vector<Line> pen_lines = null; 
     
     Pen(){
-        lines = new Vector<Line>();
+        init();
+    
+    }
+    
+    public void init(){
+        
+        this.setBackground(Color.red);
+        this.setLayout(new BorderLayout());
+        pen_lines = new Vector<Line>();
+        this.setSize(300, 300);
 //         addMouseMotionListener 專門是滑鼠移動的，回去要看文獻去看監聽什麼事件（mouseDragged）
         this.addMouseMotionListener(new MouseAdapter(){ //針對滑鼠移動軌跡監聽
             public void mouseDragged(MouseEvent e){ //移動軌跡
@@ -32,7 +41,7 @@ public class Pen extends Panel{
                 Graphics g = Pen.this.getGraphics(); 
                 
                 g.drawLine(lp.x, lp.y, cp.x, cp.y); //畫線
-//                Page.this.lines.add( new Line(lp, cp));
+                Pen.this.pen_lines.add( new Line(lp, cp));
                 lp = cp;
             }
         }); 
@@ -47,17 +56,18 @@ public class Pen extends Panel{
             public void mouseReleased(MouseEvent e){ //放開
                 System.out.println("mouseReleased");
                 
+                
+                
             }
             public void mouseClick(MouseEvent e){
                 System.out.println("mouseClick");
             }
         });
-    
-    
     }
+    
     public void paint(Graphics g){  //記錄Line
-        for(int i=0;i<Pen.this.lines.size();i++){
-            Line l = this.lines.elementAt(i);
+        for(int i=0;i<Pen.this.pen_lines.size();i++){
+            Line l = this.pen_lines.elementAt(i);
             g.drawLine(l.sp.x, l.sp.y, l.ep.x, l.ep.y);
         }
     }

@@ -22,7 +22,7 @@ public class ToolBar extends Panel{
     
         
     Button penBtn = new Button("Pen");
-    Button rectBtn = new Button("React");
+    Button rectBtn = new Button("Rect");
     Button cleanBtn = new Button("Clean");
     
     
@@ -62,6 +62,27 @@ public class ToolBar extends Panel{
             }
         });
         
+//         Button previousPageBtn = new Button("上一頁");
+        this.add(previousPageBtn);
+        previousPageBtn.addMouseListener(new MouseAdapter(){
+            public void mouseClicked(MouseEvent e){
+            
+                if (ep.curPage > 1){
+                    ep.mainWin.remove(ep.activatePage);
+                    ep.activatePage = ep.pages.elementAt(ep.pages.indexOf(ep.activatePage)-1);
+                    ep.mainWin.add(ep.activatePage, BorderLayout.CENTER);
+                    ep.megBar.updateInfo(--ep.curPage, ep.numPages);
+                }
+                if(ep.curPage == 1){
+                    previousPageBtn.setVisible(false);
+                }
+                if(ep.curPage != ep.numPages){
+                    nextPageBtn.setVisible(true);
+                }
+                ep.mainWin.setVisible(true);
+            }
+        });
+        
 //        Button newPageBtn = new Button("new Page");
         this.add(newPageBtn);
         newPageBtn.addMouseListener(new MouseAdapter(){
@@ -96,26 +117,7 @@ public class ToolBar extends Panel{
         });
         
         
-//        Button previousPageBtn = new Button("上一頁");
-        this.add(previousPageBtn);
-        previousPageBtn.addMouseListener(new MouseAdapter(){
-            public void mouseClicked(MouseEvent e){
-            
-                if (ep.curPage > 1){
-                    ep.mainWin.remove(ep.activatePage);
-                    ep.activatePage = ep.pages.elementAt(ep.pages.indexOf(ep.activatePage)-1);
-                    ep.mainWin.add(ep.activatePage, BorderLayout.CENTER);
-                    ep.megBar.updateInfo(--ep.curPage, ep.numPages);
-                }
-                if(ep.curPage == 1){
-                    previousPageBtn.setVisible(false);
-                }
-                if(ep.curPage != ep.numPages){
-                    nextPageBtn.setVisible(true);
-                }
-                ep.mainWin.setVisible(true);
-            }
-        });
+//      
         
         
 //        Button nextPageBtn = new Button("下一頁");
@@ -137,7 +139,7 @@ public class ToolBar extends Panel{
                     previousPageBtn.setVisible(true);
                 }
                 
-                ep.mainWin.setVisible(true);
+//                ep.mainWin.setVisible(true);
             }
         });
         
@@ -145,8 +147,19 @@ public class ToolBar extends Panel{
         penBtn.addMouseListener(new MouseAdapter(){
            public void mouseClicked(MouseEvent e){
                System.out.println("pen_start");
-        //               ep.pen = new Pen();
                ep.activatePage.DrawLine();
+               
+
+//               ep.pen = new Pen();
+//               ep.pens.add(ep.pen);
+//               ep.activatePage.add(ep.pen);
+               
+//               ep.mainWin.add(ep.pen);
+
+
+//               ep.mainWin.setVisible(true);
+                    
+               
            }
         });
         //建立penBtn的ActionListener，用來監聽按下按鈕後。

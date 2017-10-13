@@ -19,8 +19,4 @@ public class Line {
         sp = s;
         ep = e;
     }
-    public void clear(){
-    
-    
-    }
 }
