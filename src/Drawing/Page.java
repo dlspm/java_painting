@@ -109,6 +109,7 @@ public class Page extends Panel{
                 System.out.println("mousePressed");
                 lp = e.getPoint() ; //第一次
                 
+                Page.this.rects.add( new Line(lp, lp)); 
                 
             }
             public void mouseReleased(MouseEvent e){ //放開
