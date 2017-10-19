@@ -150,18 +150,13 @@ public class ToolBar extends Panel{
 //               ep.activatePage.DrawLine();
                
 
-               ep.pen = new Pen(); //新增一個 Panel DrawLine
-               ep.pen.setOpaque(false);
+               ep.pen = new Pen(ep); //新增一個 Panel DrawLine
                ep.pens.add(ep.pen); //放到 point 裡
                ep.activatePage.add(ep.pen); //再把這個 Panel add 到現在的 Page
                ep.pages.add(ep.activatePage); //放到 Point 裡
                
 //               ep.mainWin.add(ep.pen);
-
-
 //               ep.mainWin.setVisible(true);
-                    
-               
            }
         });
         //建立penBtn的ActionListener，用來監聽按下按鈕後。
@@ -169,16 +164,19 @@ public class ToolBar extends Panel{
             public void actionPerformed(ActionEvent e) {
                 // 按下按鈕之後執行的動作
                 System.out.println("click Pen");
-                
             }
         });
         
         this.add(rectBtn);
         rectBtn.addMouseListener(new MouseAdapter(){
            public void mouseClicked(MouseEvent e){
-               System.out.println("pen_start");
-        //               ep.pen = new Pen();
-               ep.activatePage.DrawRect();
+               System.out.println("rect_start");
+//               ep.activatePage.DrawRect();
+
+               ep.react = new Square(ep); 
+               ep.reacts.add(ep.react); 
+               ep.activatePage.add(ep.react); //再把這個 Panel add 到現在的 Page
+               ep.pages.add(ep.activatePage); //放到 Point 裡
 
            }
         });

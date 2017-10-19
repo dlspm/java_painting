@@ -134,15 +134,16 @@ public class Page extends Panel{
 //            g.drawLine(l.sp.x, l.sp.y, l.ep.x, l.ep.y);
 //        }
 
-        //1.
+         //1
 //        for(int i=0;i<Page.this.rects.size();i++){
 //            width = Math.abs(rects.get(i).xy.x - rects.get(i).y.x);
 //            height = Math.abs(rects.get(i).xy.y - rects.get(i).y.y);
 //            g.drawRect(rects.get(i).xy.x, rects.get(i).xy.y, width, height);
+//
 //        }
-        
-        //2.
+        //2
         for(int i=0;i<Page.this.rects.size()-1;i+=2){
+
             width = Math.abs(rects.get(i+1).xy.x - rects.get(i).xy.x);
             height = Math.abs(rects.get(i+1).xy.y - rects.get(i).xy.y);
             g.drawRect(rects.get(i).xy.x, rects.get(i).xy.y, width, height);
@@ -150,7 +151,7 @@ public class Page extends Panel{
             width = Math.abs(cp.x - rects.get(rects.size()-1).xy.x);
             height = Math.abs(cp.y - rects.get(rects.size()-1).xy.y);
             g.drawRect(rects.get(rects.size()-1).xy.x, rects.get(rects.size()-1).xy.y, width, height);
-        }
+        } 
     }
     
 
