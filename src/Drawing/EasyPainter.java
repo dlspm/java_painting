@@ -27,10 +27,16 @@ public class EasyPainter {
     
     public Page activatePage = null ; //判斷是否有新增 Page
     public Pen pen = null;
+    public Square react = null;
+    
     public Vector<Page> pages = null; 
     public Vector<Pen> pens = null; 
+    public Vector<Square> reacts = null; 
 //    public ArrayList colorpage = new ArrayList();
 
+    public Line size;
+    
+    
     EasyPainter(){
     
         init();
@@ -39,6 +45,7 @@ public class EasyPainter {
     public void init(){
         pages = new Vector<Page>();
         pens = new Vector<Pen>() ;
+        reacts = new Vector<Square>();
         
         mainWin = new MainWindow(this);
         
