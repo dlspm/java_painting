@@ -17,7 +17,9 @@ public class EasyPainter {
     public String swTitle = "EasyPainter";
     public String version = "0.1";
     public MainWindow mainWin;
-        
+    public ToolBar toolBar;
+    public Page activePage=null;
+    public Vector<Page> pages=null;
     
     EasyPainter(){
     
@@ -27,6 +29,12 @@ public class EasyPainter {
     public void init(){
          
         mainWin = new MainWindow(this);
+        toolBar = new ToolBar(this);
+        mainWin.setToolBar(toolBar);
+        
+        pages = new Vector<Page>();
+        
+        
         mainWin.setVisible(true);
         
     }
