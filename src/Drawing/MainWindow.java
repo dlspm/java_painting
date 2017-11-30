@@ -36,17 +36,4 @@ public class MainWindow extends Frame{  //用extends 去繼承 Frame
                   
 
     }
-    
-    //新增工具列
-    void setToolBar(ToolBar tb){        
-        this.add(tb, BorderLayout.SOUTH);        
-    }
-    
-    //訊息通知列
-    void setMessageBar(MessageBar mb){
-        this.add(mb, BorderLayout.NORTH);
-    }
-         
-    
-
 }
