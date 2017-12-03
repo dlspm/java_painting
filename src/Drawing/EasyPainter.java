@@ -18,8 +18,13 @@ public class EasyPainter {
     public String version = "0.1";
     public MainWindow mainWin;
     public ToolBar toolBar;
+    public MessageBar megBar;
     public Page activePage=null;
     public Vector<Page> pages=null;
+    
+    public int numPages=0;
+    public int curPage=0;
+    
     
     EasyPainter(){
     
@@ -34,6 +39,8 @@ public class EasyPainter {
         
         pages = new Vector<Page>();
         
+        megBar = new MessageBar(this);
+        mainWin.setMessageBar(megBar);
         
         mainWin.setVisible(true);
         

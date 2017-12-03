@@ -15,8 +15,9 @@ import java.awt.event.*;
 public class ToolBar extends Panel{
     
     ToolBar(EasyPainter ep){
-        this.setBackground(Color.DARK_GRAY);
+        this.setBackground(Color.lightGray);
         this.setLayout(new FlowLayout());
+        
         Button newPageBtn = new Button("New Page");
         this.add(newPageBtn);
         newPageBtn.addMouseListener(new MouseAdapter()
@@ -34,6 +35,9 @@ public class ToolBar extends Panel{
                 //ep.mainWin.setVisible(false);
                 ep.mainWin.setVisible(true);
                 
+                ep.numPages++;
+                ep.curPage++;
+                ep.megBar.updateInfo(ep.curPage, ep.numPages);
             }
         });
     }
