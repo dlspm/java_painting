@@ -9,7 +9,6 @@ package Drawing;
  *
  * @author angus
  */
-public enum Status {
-    Drawing,Selection,
-    CreatingOBJ, EllipseOBJ
+public class Superclass_line {
+    
 }

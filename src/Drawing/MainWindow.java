@@ -7,31 +7,26 @@ package Drawing;
 
 import java.awt.*;
 import java.awt.event.*;
+import javax.swing.JFrame;
 
 /**
  *
  * @author angus
  */
-public class MainWindow extends Frame{  //用extends 去繼承 Frame
+public class MainWindow extends JFrame{  //用extends 去繼承 Frame
     //呈現視窗裡面的一些內容(功能表)
     
     MainWindow(EasyPainter ep)
     {
-        this.setBackground(Color.LIGHT_GRAY);
+        this.setBackground(Color.CYAN);
         this.setSize(600, 500);
         this.setLocation(100, 100);
 
-        this.setTitle(ep.swTitle + " version " + ep.version);
+        this.setTitle(ep.Title + " version " + ep.version);
 
         this.setLayout(new BorderLayout());
        // this.setVisible(true);
-        this.addWindowListener(new WindowAdapter()
-        {
-            public void windowClosing(WindowEvent e)
-            {
-                System.exit(0);
-            }
-        });
+
     }
     
     

@@ -7,6 +7,7 @@ package Drawing;
 
 import java.awt.*;
 import java.util.*;
+import javax.swing.JFrame;
 
 /**
  *
@@ -14,12 +15,13 @@ import java.util.*;
  */
 public class EasyPainter {
         
-    public String swTitle = "EasyPainter";
+    public String Title = "EasyPainter";
     public String version = "0.1";
     public MainWindow mainWin;
     public ToolBar toolBar;
     public MessageBar megBar;
     public Page activePage=null;
+    public JPage activeJPage=null;
     public Vector<Page> pages=null;
     
     public int numPages=0;
@@ -34,6 +36,9 @@ public class EasyPainter {
     public void init(){
          
         mainWin = new MainWindow(this);
+        mainWin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //關閉語法
+        
+        
         toolBar = new ToolBar(this);
         mainWin.setToolBar(toolBar);
         
@@ -43,6 +48,7 @@ public class EasyPainter {
         mainWin.setMessageBar(megBar);
         
         mainWin.setVisible(true);
+        mainWin.validate();
         
     }
 

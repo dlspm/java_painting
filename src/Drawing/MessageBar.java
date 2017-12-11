@@ -7,13 +7,14 @@ package Drawing;
 
 import java.awt.*;
 import java.awt.event.*;
+import javax.swing.JPanel;
 
 
 /**
  *
  * @author angus
  */
-public class MessageBar extends Panel {
+public class MessageBar extends JPanel {
     Label pageInfo;
     MessageBar(EasyPainter ep)
     {
